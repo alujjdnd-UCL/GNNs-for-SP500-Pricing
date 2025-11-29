@@ -107,6 +107,9 @@ def get_wikidata_id(symbol,
     if not to_query:
         return {sym: cached_qids.get(strip_exchange_suffix(sym), None) for sym in symbols_list}
 
+    # Strip exchange suffixes from symbols to query
+    to_query_stripped = [strip_exchange_suffix(s) for s in to_query]
+
     if not allow_external_requests:
         # Populate newly requested symbols with None and persist cache
         for stripped_sym in to_query_stripped:
@@ -119,7 +122,6 @@ def get_wikidata_id(symbol,
     # Build SPARQL: match any "P249 = ticker" (on any exchange) –
     # you can add ps:P414 wd:Q13677 if you want to force only NASDAQ,
     # but here's the flexible approach that picks up ANY listing with that ticker:
-    to_query_stripped = [strip_exchange_suffix(s) for s in to_query]
     values_str = " ".join(f"\"{sym}\"" for sym in to_query_stripped)
     query = f"""
     SELECT ?ticket ?company WHERE {{
