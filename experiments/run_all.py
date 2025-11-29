@@ -70,11 +70,18 @@ def main():
     print(f"  - Edge Strategies: {len(EDGE_FORMATION_STRATEGIES)}")
     print("="*80)
     
-    # Get list of phase files
-    phases_path = os.path.join(DATA_ROOT, PHASES_DIR)
-    if not os.path.exists(phases_path):
+    # Resolve data paths relative to script location
+    script_dir = Path(__file__).parent
+    data_root = (script_dir / DATA_ROOT).resolve()
+    phases_path = data_root / PHASES_DIR
+    
+    print(f"\nData root: {data_root}")
+    print(f"Phases directory: {phases_path}")
+    
+    if not phases_path.exists():
         raise FileNotFoundError(
             f"Phases directory not found: {phases_path}\n"
+            f"Expected location: {phases_path}\n"
             f"Please ensure data is organized according to data/documentation/DATA_FORMAT.md"
         )
     
@@ -136,6 +143,7 @@ def main():
             current_dataset_options = DATASET_OPTIONS.copy()
 
             dataset = SP500Stocks(
+                root=str(data_root),
                 values_file_name=file_path,
                 past_window=PAST_WINDOW,
                 future_window=FUTURE_WINDOW,
