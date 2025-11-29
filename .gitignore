@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyTorch
+*.pt
+*.pth
+*.ckpt
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data files (not tracked due to size/licensing)
+data/SP500/raw/*.csv
+data/SP500/raw/*.npy
+data/SP500/raw/phases/*.csv
+data/SP500/processed/
+
+# Experiment outputs
+experiments/metrics.csv
+experiments/runs*/
+experiments/*.log
+data/graphs/
+
+# Analysis outputs
+analysis/figures/
+analysis/*.png
+analysis/*.pdf
+analysis/*.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Model checkpoints (can be large)
+checkpoints/
+saved_models/
+
+# Results backups
+results_backup/
